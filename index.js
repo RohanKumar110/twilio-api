@@ -15,6 +15,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get("/", (req, res) => {
+  res.send("Welcome to Women Safety Application");
+});
+
 app.post("/", async (req, res) => {
   const from = "+17069433597";
   let { to, body } = req.body;
