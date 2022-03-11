@@ -21,17 +21,19 @@ app.get("/", (req, res) => {
 
 app.post("/", async (req, res) => {
   const from = "+17069433597";
-  let { to, body } = req.body;
-  if (!to) {
-    return res.status(400).json({ success: false, message: "To Field Empty" });
+  let { numbers, body } = req.body;
+  if (!numbers) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Numbers Field Empty" });
   }
   if (!body) {
     return res
       .status(400)
       .json({ success: false, message: "Body Field Empty" });
   }
-  to = "+92" + to.substring(1);
-  const isSent = await sendMessage(to, from, body);
+  console.log(numbers);
+  const isSent = await sendMessage(numbers, from, body);
   if (isSent) {
     return res.status(200).json({ success: true, message: "Alert Sent" });
   } else {
